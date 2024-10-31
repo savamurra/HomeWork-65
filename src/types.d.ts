@@ -1,4 +1,3 @@
-
 export interface IInfoForm {
   title: string;
   content: string;

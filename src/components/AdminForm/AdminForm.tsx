@@ -1,16 +1,15 @@
-import { Button, MenuItem, TextField, Typography } from '@mui/material';
-import Grid from '@mui/material/Grid2';
-import React, { useCallback, useEffect, useState } from 'react';
-import { IInfo, IInfoForm } from '../../types';
-import axiosAPI from '../../axiosAPI.tsx';
-import { useNavigate } from 'react-router-dom';
-import Spinner from '../UI/Spinner/Spinner.tsx';
-
+import { Button, MenuItem, TextField, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import React, { useCallback, useEffect, useState } from "react";
+import { IInfo, IInfoForm } from "../../types";
+import axiosAPI from "../../axiosAPI.tsx";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../UI/Spinner/Spinner.tsx";
 
 const initialForm = {
-  title: '',
-  content: '',
-  category: '',
+  title: "",
+  content: "",
+  category: "",
 };
 
 const AdminForm = () => {
@@ -18,11 +17,11 @@ const AdminForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const select = [
-    {category: 'about'},
-    {category: 'contacts'},
-    {category: 'partners'},
-    {category: 'history'},
-    {category: 'founder'},
+    { category: "about" },
+    { category: "contacts" },
+    { category: "partners" },
+    { category: "history" },
+    { category: "founder" },
   ];
 
   const fetchEditQuote = useCallback(async (selected: string) => {
@@ -42,22 +41,19 @@ const AdminForm = () => {
     }
   }, []);
 
-
   useEffect(() => {
     if (form.category) {
       void fetchEditQuote(form.category);
     }
   }, [fetchEditQuote, form.category]);
 
-
   const changeField = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
   ) => {
-    const {name, value} = e.target;
-    setForm({...form, [name]: value});
-
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,18 +69,19 @@ const AdminForm = () => {
     }
   };
 
-
   return (
     <>
-      {loading ? (<Spinner/>) : (
+      {loading ? (
+        <Spinner />
+      ) : (
         <form onSubmit={onSubmit}>
-          <Typography variant="h4" sx={{flexGrow: 1, textAlign: 'center'}}>
+          <Typography variant="h4" sx={{ flexGrow: 1, textAlign: "center" }}>
             Edit pages
           </Typography>
-          <Grid container spacing={2} sx={{mx: 'auto', width: '50%', mt: 4}}>
+          <Grid container spacing={2} sx={{ mx: "auto", width: "50%", mt: 4 }}>
             <Grid size={12}>
               <TextField
-                sx={{width: '100%'}}
+                sx={{ width: "100%" }}
                 id="outlined-select-currency"
                 name="category"
                 select
@@ -101,7 +98,7 @@ const AdminForm = () => {
             </Grid>
             <Grid size={12}>
               <TextField
-                sx={{width: '100%'}}
+                sx={{ width: "100%" }}
                 id="outlined-basic"
                 label="Title"
                 name="title"
@@ -112,7 +109,7 @@ const AdminForm = () => {
             </Grid>
             <Grid size={12}>
               <TextField
-                sx={{width: '100%'}}
+                sx={{ width: "100%" }}
                 id="outlined-multiline-static"
                 label="Content"
                 name="content"
@@ -124,7 +121,7 @@ const AdminForm = () => {
             </Grid>
 
             <Grid size={12}>
-              <Button type="submit" variant="contained" sx={{width: '100%'}}>
+              <Button type="submit" variant="contained" sx={{ width: "100%" }}>
                 edit
               </Button>
             </Grid>
